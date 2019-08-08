@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var table = new Ext.Panel({
+                renderTo: document.body,
+                border: false,
+                layout:'table',
+                defaults: {
+                    // applied to each contained panel
+                    //bodyStyle:'padding:20px'
+                },
+                layoutConfig: {
+                    // The total column count must be specified here
+                    columns: 3
+                },
+                items: [
+                    {
+                        xtype: 'box',
+                        height: 40,
+                        autoEl: {
+                            tag: 'img',
+                            src: '../reset/img/logo.png'
+                        },
+                        rowspan: 1
+                    },
+                    {
+                        xtype: 'tabpanel',
+                        plain: true,
+                        border: false,
+                        activeTab: 0,
+                        width: 400,
+                        items: [
+                            {
+                                title: '国内版',
+                                items: [
+                                    {
+                                        xtype: 'field',
+                                        height: 40,
+                                        width: 400
+                                    },
+
+
+                                ]
+                            },
+                            {
+                                title: '国际版',
+                                items: [
+                                    {
+                                        xtype: 'field',
+                                        height: 40,
+                                        width: 400
+                                    },
+
+
+                                ],
+                            }],
+                        rowspan: 2,
+
+                    },
+                    {
+                        xtype: 'box',
+                        height: 40,
+                        autoEl: {
+                            tag: 'img',
+                            src: '../reset/img/seach.png'
+                        },
+                        rowspan: 2
+                    },
+
+                ]
+            });
+
+
+        });
+    </script>
+    <style>
+        .test1 {
+            background-color: red;
+        }
+    </style>
+
+</head>
+<body>
+<div id="tabpanel"></div>
+
+</body>
+</html>

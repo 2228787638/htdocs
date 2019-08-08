@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var myform = new Ext.FormPanel({
+                renderTo: document.body,
+                title: 'hello',
+                height: 500,
+                width: 800,
+                frame: true,
+                defaults: {
+                    allowBlank: false,
+                    blankText: '不允许为空',
+                    msgTarget: 'qtip'
+                },
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: '邮箱：',
+                        regex: /\w+@[a-z0-9]+\.[a-z]{2,4}/,
+                        regexText: '格式错误',
+                        msgTarget: 'under',
+                        //msgTarget: 'side',
+                        //msgTarget: 'qtip',
+                        //msgTarget: 'title'
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: '手机：',
+                        regex: /^1[3|4|5|7|8][0-9]{9}$/,
+                        regexText: '格式错误',
+                        msgTarget: 'under',
+                        //msgTarget: 'side',
+                        //msgTarget: 'qtip',
+                        //msgTarget: 'title'
+                    },
+                    {
+                        xtype: 'datefield',
+                        fieldLabel: 'Birthday',
+                        emptyText: 'your birthday',
+                        format: 'Y-m-d',
+                        disabledDays: [0,2,4,6]
+                    },
+                    {
+                        xtype: 'timefield',
+                        fieldLabel: 'lunch time',
+                        emptyText: 'your lunch time',
+                        minValue: '11:00',
+                        maxValue: '23:00',
+                        increment: 30
+                    },
+                    {
+                        xtype: 'htmleditor',
+                        fieldLabel: 'editor',
+                    },
+
+
+                ],
+                buttons: [
+                    {
+                        text: 'submit',
+                        listeners: {
+                            'click': function(){
+                                Ext.Msg.alert('hello world','hello world');
+                            }
+                        }
+                    },
+                    {
+                        text: 'reset',
+                        listeners: {
+                            'click': function(){
+                                myform.getForm().reset();
+                                //myform.form.reset();
+                            }
+                        }
+                    }
+                ]
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

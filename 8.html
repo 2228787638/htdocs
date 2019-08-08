@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var viewport = new Ext.Viewport({
+                layout:'border',
+                items:[{
+                    region: 'west',
+                    width: 200,
+                    layout: 'accordion',
+                    layoutConfig: {
+                        titleCollapse: true,
+                        animate: true,
+                        activeOnTop: false
+                    },
+                    items: [{
+                        title: '1',
+                        html: '1'
+                    },{
+                        title: '2',
+                        html: '2'
+                    },{
+                        title: '3',
+                        html: '3'
+                    },{
+                        title: '4',
+                        html: '4'
+                    },{
+                        title: '5',
+                        html: '5'
+                    },{
+                        title: '6',
+                        html: '6'
+                    },{
+                        title: '7',
+                        html: '7'
+                    }]
+                },{
+                    region: 'center',
+                    split: true,
+                    border: true
+                }]
+            });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

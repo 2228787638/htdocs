@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../resources/css/ext-all.css"/>
+    <script type="text/javascript" src="../../adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="../../ext-all.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var myStore = new Ext.data.ArrayStore({
+                fields: ['answer', 'content'],
+                idIndex: 0 // id for each record will be the first element
+            });
+            var myData = [
+                // [1, 'Fred Flintstone', 'Fred'],  // note that id for the record is the first element
+                // [2, 'Barney Rubble', 'Barney']
+            ];
+            myStore.loadData(myData);
+            var answerone = [
+                {
+                    xtype: 'radio',
+                    boxLabel: 'java',
+                    name: 'one',
+                    inputValue: 'java',
+                },
+                {
+                    xtype: 'radio',
+                    boxLabel: 'php',
+                    name: 'one',
+                    inputValue: 'php',
+                },
+                {
+                    xtype: 'radio',
+                    boxLabel: 'c',
+                    name: 'one',
+                    inputValue: 'c'
+                },
+                {
+                    xtype: 'radio',
+                    boxLabel: 'ruby',
+                    name: 'one',
+                    inputValue: 'ruby'
+                }
+            ];
+            var answertwo = [
+                {
+                    xtype: 'checkbox',
+                    boxLabel: 'java',
+                    name: 'two',
+                    inputValue:'java'
+
+                },
+                {
+                    xtype: 'checkbox',
+                    boxLabel: 'php',
+                    name: 'two',
+                    inputValue:'php'
+
+                },
+                {
+                    xtype: 'checkbox',
+                    boxLabel: 'c',
+                    name: 'two',
+                    inputValue:'c',
+
+                },
+                {
+                    xtype: 'checkbox',
+                    boxLabel: 'ruby',
+                    name: 'two',
+                    inputValue:'ruby',
+
+                }
+            ];
+            var navHandler = function (direction) {
+                var wizard = Ext.getCmp('wizard').layout;
+                var prev = Ext.getCmp('move-prev');
+                var next = Ext.getCmp('move-next');
+                var activeId = wizard.activeItem.id;
+
+                if (activeId == 'card-0') {
+                    if (direction == 1) {
+                        wizard.setActiveItem(1);
+                        prev.setDisabled(false);
+                    }
+                } else if (activeId == 'card-1') {
+                    if (direction == -1) {
+                        next.setText("下一题");
+                        wizard.setActiveItem(0);
+                        prev.setDisabled(true);
+                    } else {
+                        next.setText("submit");
+                        wizard.setActiveItem(2);
+                        var oneResult = panel.getForm().items.items.filter(item=>item.checked).filter(item=>item.name==="one");
+                        var twoResult = panel.getForm().items.items.filter(item=>item.checked).filter(item=>item.name==="two");
+                        let str = " "
+                        twoResult.forEach(i=>{
+                            str+=i.boxLabel+" "
+                        });
+                        //answerone[]
+                        Ext.getCmp('answer1').update(oneResult[0].boxLabel);
+                        Ext.getCmp('answer2').update(str);
+
+                    }
+                } else if (activeId == 'card-2') {
+                    if (direction == -1) {
+                        next.setText("下一题");
+                        wizard.setActiveItem(1);
+                        next.setDisabled(false);
+                    }
+                    else{
+                        Ext.Msg.alert('提示','提交成功');
+                    }
+
+                }
+            };
+            var panel = new Ext.FormPanel({
+                renderTo: document.body,
+                width: 620,
+                height: 500,
+                items: [
+                    {
+                        region: 'west',
+                        id: 'wizard',
+                        width: 600,
+                        height: 480,
+                        title: '测试',
+                        layout: {type:'card',align: 'middle',pack: 'center'},
+                        activeItem: 0,
+                        bodyStyle: 'padding:15px',
+                        defaults: {
+                            border: false
+                        },
+                        bbar: [
+                            {
+                                id: 'move-prev',
+                                text: '上一题',
+                                handler: navHandler.createDelegate(this, [-1]),
+                                disabled: true
+                            }, '->', {
+                                id: 'move-next',
+                                text: '下一题',
+                                handler: navHandler.createDelegate(this, [1])
+                            }
+                        ],
+                        items: [
+                            {
+                                id: 'card-0',
+                                title: '题目1：下列哪个不属于脚本语言：',
+                                items: answerone
+                            }, {
+                                id: 'card-1',
+                                title: '题目2：下列哪个属于脚本语言：',
+                                items: answertwo,
+                            }, {
+                                id: 'card-2',
+                                html: '<h1>恭喜恭喜，完成了。点击立即提交！</h1>',
+                                items: [
+                                    {
+                                        id: 'answer1',
+                                        title: '题目1：下列哪个不属于脚本语言：',
+                                        html: ''
+                                    },
+
+                                    {
+                                        id: 'answer2',
+                                        title: '题目2：下列哪个属于脚本语言：',
+                                        html: ''
+                                    },
+
+                                ]
+
+
+                            }
+                        ]
+                    }
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

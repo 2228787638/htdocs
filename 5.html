@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var reader = new Ext.data.JsonReader({}, [
+                {name: 'name', type: 'string'},
+                {name: 'age', type: 'int'},
+                {name: 'birthday', type: 'date', dateFormat: 'Y-m-dTH:i:s'},
+                {name: 'weight', type: 'float'}
+            ]);
+            var form = new Ext.form.FormPanel({
+                id: 'testForm',
+                renderTo: document.body,
+                defaultType: 'textfield',
+                labelAlign: 'left',
+                title: 'load data',
+                labelWidth: 50,
+                frame: true,
+                width: 300,
+                reader: reader,
+                items: [
+                    {
+                        name: 'name',
+                        fieldLabel: 'Name'
+                    },
+                    {
+                        name: 'age',
+                        fieldLabel: 'Age'
+                    },
+                    {
+                        xtype: 'datefield',
+                        name: 'birthday',
+                        fieldLabel: 'Birthday'
+                    },
+                    {
+                        name: 'weight',
+                        fieldLabel: 'Weight'
+                    }],
+                buttons: [
+                    {
+                        text: 'load',
+                        listeners: {
+                            'click': function (btn, e) {
+                                form.form.load({url: 'json_reader.txt'});
+                            }
+                        }
+                    }]
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

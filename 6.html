@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+    <script type="text/javascript">
+        Ext.onReady(function () {
+            var panel = new Ext.Panel({
+                items:[
+                    {
+                        title: 'Panel',
+                        html: 'Panel',
+                        width: 500,
+                        height: 500,
+                        autoHeight: true,
+                        autoWidth: true,
+                    }
+                ]
+            });
+            var win = new Ext.Window({
+                title: 'hello world',
+                html: 'hello world',
+                autoHeight: true,
+                autoWidth: true,
+                layout: 'fit',
+                items: [
+                    panel
+                ]
+            });
+            win.show();
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

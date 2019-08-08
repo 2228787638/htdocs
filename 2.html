@@ -1,0 +1,49 @@
+<html>
+<head>
+    <link href="../resources/css/ext-all.css" rel="stylesheet">
+    <script src="../adapter/ext/ext-base.js"></script>
+    <script src="../ext-all.js"></script>
+
+    <script type="text/javascript">
+        Ext.onReady(function () {
+
+            Ext.ns("hi");
+            hi.CancelButton = Ext.extend(Ext.Button,
+                {
+                    text: 'Cancel',
+                    style: 'background-color:red',
+                    initComponent:function(){
+                        hi.CancelButton.superclass.initComponent.call(this);
+                        this.on('click',this.onButtonClick,this);
+                    },
+                    onButtonClick:function(e){
+                        Ext.Msg.alert('Cancel Button','This is customized cancel button')
+                    }
+                }
+            );
+            Ext.reg('hi.CancelButton',hi.CancelButton);
+            const tabpanel = new Ext.Panel({
+                renderTo: 'tabpanel',
+                width: 200,
+                height: 150,
+                items:[
+                    {xtype: 'hi.CancelButton'}
+                ]
+            });
+
+
+
+        });
+    </script>
+    <style>
+        .test1 {
+            background-color: red;
+        }
+    </style>
+
+</head>
+<body>
+<div id="test"></div>
+<div id="tabpanel"></div>
+</body>
+</html>
